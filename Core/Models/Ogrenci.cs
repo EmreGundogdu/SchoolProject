@@ -9,6 +9,8 @@ namespace Core.Models
     public class Ogrenci
     {
         public int Id { get; set; }
+        public string Name { get; set; }
+        public int SinifId { get; set; }
         public virtual Sinif Sinif { get; set; }
     }
 }

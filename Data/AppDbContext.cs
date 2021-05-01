@@ -1,4 +1,6 @@
 ﻿using Core.Models;
+using DataAccess.Configurations;
+using DataAccess.Seeds;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,13 @@ namespace DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.ApplyConfiguration(new OgrenciConfiguration());
+            modelBuilder.ApplyConfiguration(new SinifConfiguration());
+            modelBuilder.ApplyConfiguration(new OgretmenConfiguration());
+
+            modelBuilder.ApplyConfiguration(new OgrenciSeed(new int[] { 1, 2 }));
+            modelBuilder.ApplyConfiguration(new SinifSeed(new int[] { 1,2}));
+            modelBuilder.ApplyConfiguration(new OgretmenSeed());
         }
     }
 
