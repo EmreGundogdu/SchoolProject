@@ -24,8 +24,8 @@ namespace API.Mapping
             CreateMap<Ogrenci, OgrenciWithSinifDto>();
             CreateMap<OgrenciWithSinifDto, Ogrenci>();
 
-            CreateMap<Ogretmen, OgretmenDto>();
             CreateMap<OgretmenDto, Ogretmen>();
+            CreateMap<Ogretmen, OgretmenDto>();
         }
     }
 }

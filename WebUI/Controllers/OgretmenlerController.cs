@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebUI.DTOs;
+using WebUI.Filters;
 
 namespace WebUI.Controllers
 {
     public class OgretmenlerController : Controller
     {
         private readonly IOgretmenService _ogretmenService;
-
         private readonly IMapper _mapper;
         public OgretmenlerController(IOgretmenService ogretmenService, IMapper mapper)
         {
@@ -46,6 +46,7 @@ namespace WebUI.Controllers
             _ogretmenService.Update(_mapper.Map<Ogretmen>(ogretmenDto));
             return RedirectToAction("Index");
         }
+        [ServiceFilter(typeof(NotFoundFilter))]
         public IActionResult Delete(int id)
         {
             var ogretmen = _ogretmenService.GetByIdAsync(id).Result;

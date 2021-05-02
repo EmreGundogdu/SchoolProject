@@ -24,6 +24,9 @@ namespace WebUI.Mapping
 
             CreateMap<Ogrenci, OgrenciWithSinifDto>();
             CreateMap<OgrenciWithSinifDto, Ogrenci>();
+
+            CreateMap<Ogretmen, OgretmenDto>();
+            CreateMap<OgretmenDto, Ogretmen>();
         }
     }
 }
