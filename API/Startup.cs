@@ -1,3 +1,5 @@
+using API.DTOs;
+using API.Extensions;
 using API.Filters;
 using Core.Repository;
 using Core.Services;
@@ -6,7 +8,9 @@ using DataAccess;
 using DataAccess.Repositories;
 using DataAccess.UnitOfWorks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -52,7 +57,7 @@ namespace API
                  });
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddControllers(o=>
+            services.AddControllers(o =>
             {
                 o.Filters.Add(new ValidationFilter());
             });
@@ -69,6 +74,7 @@ namespace API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCustomException();
 
             app.UseHttpsRedirection();
 
