@@ -18,7 +18,7 @@ namespace DataAccess.Seeds
         }
         public void Configure(EntityTypeBuilder<Sinif> builder)
         {
-            builder.HasData(new Sinif { Id = _ids[0], Name = "İlkokul" }, new Sinif { Id = _ids[1], Name = "Ortaokul" });
+            builder.HasData(new Sinif { Id = _ids[0], Name = "İlkokul" ,SinifDuzeyi=1}, new Sinif { Id = _ids[1], Name = "Ortaokul" ,SinifDuzeyi=2});
         }
     }
 }
