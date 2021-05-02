@@ -13,7 +13,16 @@ namespace API.Mapping
         public MapProfile()
         {
             CreateMap<Sinif, SinifDto>();
-            CreateMap<Sinif, Sinif>();
+            CreateMap<SinifDto, Sinif>();
+
+            CreateMap<Sinif, SinifWithOgrenciDto>();
+            CreateMap<SinifWithOgrenciDto, Sinif>();
+
+            CreateMap<Ogrenci, OgrenciDto>();
+            CreateMap<OgrenciDto, Ogrenci>();
+
+            CreateMap<Ogrenci, OgrenciWithSinifDto>();
+            CreateMap<OgrenciWithSinifDto, Ogrenci>();
         }
     }
 }

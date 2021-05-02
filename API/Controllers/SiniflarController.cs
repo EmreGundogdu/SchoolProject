@@ -13,11 +13,11 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SinifController : ControllerBase
+    public class SiniflarController : ControllerBase
     {
         private readonly ISinifService _sinifService;
         private readonly IMapper _mapper;
-        public SinifController(ISinifService sinifService, IMapper mapper)
+        public SiniflarController(ISinifService sinifService, IMapper mapper)
         {
             _sinifService = sinifService;
             _mapper = mapper;
@@ -44,7 +44,7 @@ namespace API.Controllers
         public async Task<IActionResult> Save(SinifDto sinifDto)
         {
             var newSinif = await _sinifService.AddAsync(_mapper.Map<Sinif>(sinifDto));
-            return Created(string.Empty,_mapper.Map<SinifDto>(newSinif));
+            return Created(string.Empty, _mapper.Map<SinifDto>(newSinif));
         }
         [HttpPut]
         public IActionResult Update(SinifDto sinifDto)
@@ -59,6 +59,6 @@ namespace API.Controllers
             _sinifService.Remove(sinif);
             return NoContent();
         }
-        
+
     }
 }
