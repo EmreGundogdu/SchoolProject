@@ -29,12 +29,12 @@ namespace DataAccess.UnitOfWorks
 
         public void Commit()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();  
         }
 
-        public Task CommitAsync()
+        public async Task CommitAsync()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
     }
 }
