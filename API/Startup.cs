@@ -1,3 +1,4 @@
+using API.Filters;
 using Core.Repository;
 using Core.Services;
 using Core.UnitOfWorks;
@@ -34,6 +35,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<NotFoundFilter>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IService<>), typeof(Service<>));
@@ -42,15 +44,22 @@ namespace API
             services.AddScoped<IOgrenciService, OgrenciService>();
             services.AddScoped<IOgretmenService, OgretmenService>();
 
-            services.AddDbContext<AppDbContext>(options=>
+            services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString(),o=>
-                {
-                    o.MigrationsAssembly("DataAccess");
-                });
+                options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString(), o =>
+                 {
+                     o.MigrationsAssembly("DataAccess");
+                 });
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddControllers();
+            services.AddControllers(o=>
+            {
+                o.Filters.Add(new ValidationFilter());
+            });
+            services.Configure<ApiBehaviorOptions>(options =>
+                {
+                    options.SuppressModelStateInvalidFilter = true;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
