@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Models
+namespace WebUI.DTOs
 {
-    public class Ogretmen
+    public class SinifDto
     {
         public int Id { get; set; }
+        [Required(ErrorMessage ="{0} Alanı boş bırakılamaz.")]
         public string Name { get; set; }
     }
 }

@@ -26,8 +26,8 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new SinifConfiguration());
             modelBuilder.ApplyConfiguration(new OgretmenConfiguration());
 
-            modelBuilder.ApplyConfiguration(new OgrenciSeed(new int[] { 1, 2 }));
-            modelBuilder.ApplyConfiguration(new SinifSeed(new int[] { 1,2}));
+            modelBuilder.ApplyConfiguration(new OgrenciSeed());
+            modelBuilder.ApplyConfiguration(new SinifSeed());
             modelBuilder.ApplyConfiguration(new OgretmenSeed());
         }
     }

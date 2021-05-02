@@ -9,17 +9,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Seeds
 {
-    public class OgrenciSeed:IEntityTypeConfiguration<Ogrenci>
+    public class OgrenciSeed : IEntityTypeConfiguration<Ogrenci>
     {
-        private readonly int[] _ids;
-        public OgrenciSeed(int[] ids)
-        {
-            _ids = ids;
-        }
 
         public void Configure(EntityTypeBuilder<Ogrenci> builder)
         {
-            builder.HasData(new Ogrenci { Id = 1, Name = "Emre", SinifId = _ids[0] }, new Ogrenci { Id = 2, Name = "Fatih", SinifId = _ids[1] });
+            builder.HasData(new Ogrenci { Id = 1, Name = "Emre" }, new Ogrenci { Id = 2, Name = "Fatih" });
         }
     }
 }

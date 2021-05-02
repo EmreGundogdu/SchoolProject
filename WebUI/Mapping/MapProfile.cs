@@ -1,12 +1,13 @@
-﻿using API.DTOs;
+﻿
 using AutoMapper;
 using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUI.DTOs;
 
-namespace API.Mapping
+namespace WebUI.Mapping
 {
     public class MapProfile:Profile
     {
@@ -23,9 +24,6 @@ namespace API.Mapping
 
             CreateMap<Ogrenci, OgrenciWithSinifDto>();
             CreateMap<OgrenciWithSinifDto, Ogrenci>();
-
-            CreateMap<Ogretmen, OgretmenDto>();
-            CreateMap<OgretmenDto, Ogretmen>();
         }
     }
 }

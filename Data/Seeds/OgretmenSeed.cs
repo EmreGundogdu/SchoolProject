@@ -13,7 +13,7 @@ namespace DataAccess.Seeds
     {
         public void Configure(EntityTypeBuilder<Ogretmen> builder)
         {
-            builder.HasData(new Ogretmen { Id = 1, Name = "Öğretmen 1", Surname = "Gündoğdu" }, new Ogretmen { Id = 2, Name = "Öğretmen 2", Surname = "Öztürk" });
+            builder.HasData(new Ogretmen { Id = 1, Name = "Öğretmen 1"}, new Ogretmen { Id = 2, Name = "Öğretmen 2"});
         }
     }
 }

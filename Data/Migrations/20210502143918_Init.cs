@@ -2,7 +2,7 @@
 
 namespace DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,7 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,8 +25,7 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SinifDuzeyi = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,7 +39,7 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    SinifId = table.Column<int>(type: "int", nullable: false)
+                    SinifId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -51,36 +49,35 @@ namespace DataAccess.Migrations
                         column: x => x.SinifId,
                         principalTable: "Siniflar",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Ogrenciler",
+                columns: new[] { "Id", "Name", "SinifId" },
+                values: new object[,]
+                {
+                    { 1, "Emre", null },
+                    { 2, "Fatih", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Ogretmenler",
-                columns: new[] { "Id", "Name", "Surname" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Öğretmen 1", "Gündoğdu" },
-                    { 2, "Öğretmen 2", "Öztürk" }
+                    { 1, "Öğretmen 1" },
+                    { 2, "Öğretmen 2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Siniflar",
-                columns: new[] { "Id", "Name", "SinifDuzeyi" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "İlkokul", 0 },
-                    { 2, "Ortaokul", 0 }
+                    { 1, "İlkokul" },
+                    { 2, "Ortaokul" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Ogrenciler",
-                columns: new[] { "Id", "Name", "SinifId" },
-                values: new object[] { 1, "Emre", 1 });
-
-            migrationBuilder.InsertData(
-                table: "Ogrenciler",
-                columns: new[] { "Id", "Name", "SinifId" },
-                values: new object[] { 2, "Fatih", 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ogrenciler_SinifId",

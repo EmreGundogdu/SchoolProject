@@ -10,7 +10,6 @@ namespace Core.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int SinifId { get; set; }
         public virtual Sinif Sinif { get; set; }
     }
 }
