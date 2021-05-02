@@ -11,7 +11,7 @@ namespace DataAccess.Repositories
 {
     public class OgretmenRepository : Repository<Ogretmen>,IOgretmenRepository
     {
-        public OgretmenRepository(DbContext context) : base(context)
+        public OgretmenRepository(AppDbContext context) : base(context)
         {
         }
     }

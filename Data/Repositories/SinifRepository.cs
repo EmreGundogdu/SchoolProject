@@ -12,7 +12,7 @@ namespace DataAccess.Repositories
     public class SinifRepository : Repository<Sinif>, ISinifRepository
     {
         private AppDbContext _appDbContext { get => _context as AppDbContext; }
-        public SinifRepository(DbContext context) : base(context)
+        public SinifRepository(AppDbContext context) : base(context)
         {
         }
 

@@ -12,7 +12,7 @@ namespace DataAccess.Repositories
     public class OgrenciRepository : Repository<Ogrenci>, IOgrenciRepository
     {
         private AppDbContext appDbContext { get => _context as AppDbContext; }
-        public OgrenciRepository(DbContext context) : base(context)
+        public OgrenciRepository(AppDbContext context) : base(context)
         {
 
         }
