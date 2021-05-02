@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Repository;
 using Core.Services;
 using Core.UnitOfWorks;
 using System;
@@ -10,65 +11,15 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class OgrenciService : IOgrenciService
+    public class OgrenciService : Service<Ogrenci>, IOgrenciService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public OgrenciService(IUnitOfWork unitOfWork)
+        public OgrenciService(IUnitOfWork unitOfWork, IRepository<Ogrenci> repository) : base(unitOfWork, repository)
         {
-            _unitOfWork = unitOfWork;
-        }
-        public async Task<Ogrenci> AddAsync(Ogrenci entity)
-        {
-            await _unitOfWork.Ogrenciler.AddAsync(entity);
-            await _unitOfWork.CommitAsync();
-            return entity;
         }
 
-        public async Task<IEnumerable<Ogrenci>> AddRangeAsync(IEnumerable<Ogrenci> entities)
+        public async Task<Ogrenci> GetWithSinifByIdAsync(int ogrenciId)
         {
-            await _unitOfWork.Ogrenciler.AddRangeAsync(entities);
-            await _unitOfWork.CommitAsync();
-            return entities;
-        }
-
-        public Task<IEnumerable<Ogrenci>> Find(Expression<Func<Ogrenci, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Ogrenci>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Ogrenci> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Ogrenci> GetWithSinifByIdAsync(int ogrenciId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(Ogrenci entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveRange(IEnumerable<Ogrenci> entities)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Ogrenci> SingleOrDefaultAsync(Expression<Func<Ogrenci, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Ogrenci Update(Ogrenci entity)
-        {
-            throw new NotImplementedException();
+            return await _unitOfWork.Ogrenciler.GetWithSinifByIdAsync(ogrenciId);
         }
     }
 }
